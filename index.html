@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'"> -->
+    <meta http-equiv="Content-Security-Policy" content="default-src *;
+      img-src * 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' *;
+      style-src  'self' 'unsafe-inline' *">
+    <link href="./node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./styles.css" ref="stylesheet">
+    <script type="text/javascript" src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="./node_modules/jquery-ui/dist/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="./node_modules/moment/min/moment.min.js"></script>
+    <title>Checkbook</title>
+  </head>
+  <body>
+
+      <!-- Transaction -->
+      <div class="modal fade" id="transactionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Transaction</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="textDate" class="form-label">Date</label>
+                  <input type="date" class="form-control" id="textDate">
+                </div>
+                <div class="mb-3">
+                  <label for="textDescription">Description</label>
+                  <input class="form-control" list="datalistDescription" id="textDescription" placeholder="Type to search...">
+                  <datalist id="datalistDescription">
+                  </datalist>
+                </div>
+                <div class="mb-3">
+                  <label for="textCategory">Category</label>
+                  <input class="form-control" list="datalistCategory" id="textCategory" placeholder="Type to search...">
+                  <datalist id="datalistCategory">
+                  </datalist>
+                </div>
+                <div class="mb-3 d-grid gap-2 col-6 mx-auto ps-3 pe-3">
+                  <input type="checkbox" class="btn-check w-100" id="buttonCleared" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="buttonCleared">Cleared</label>
+                </div>
+                <div class="btn-group mb-3 col-6 w-100 ps-3 pe-3" role="group">
+                  <input type="radio" class="btn-check" name="options" id="buttonCredit" autocomplete="off" checked>
+                  <label class="btn btn-outline-primary" for="buttonCredit">Credit</label>
+                  <input type="radio" class="btn-check" name="options" id="buttonDebit" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="buttonDebit">Debit</label>
+                </div>
+                <div class="mb-3">
+                  <label for="textAmount" class="form-label">Amount</label>
+                  <input type="number" class="form-control" id="textAmount">
+                </div>
+                <input type="hidden" id="textIdx">
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="buttonSave">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>      
+
+
+    <div class="workspace">
+
+      <div class="d-flex sticky-top bg-light">
+        <div class="d-flex p-2 flex-fill">
+          <a class="text-decoration-none me-3" href="#" id="linkNew"><i class="bi bi-file-earmark"></i>&nbsp;New</a>
+          <a class="text-decoration-none me-3" href="#" id="linkOpen"><i class="bi bi-folder"></i>&nbsp;Open</a>
+          <a class="text-decoration-none me-3" href="#" id="linkSave"><i class="bi bi-save"></i>&nbsp;Save</a>
+          <a class="text-decoration-none me-3" href="#" id="linkInsert"><i class="bi bi-plus-circle"></i>&nbsp;Insert</a>
+        </div>
+        <div class="d-flex flex-fill flex-row-reverse">
+          <a class="text-decoration-none pt-2 me-3" href="#" id="linkMode"><i class="bi bi-brightness-high"></i></a>
+          <input class="form-control form-control-sm me-3" type="search" placeholder="Filter" aria-label="Search">
+        </div>
+      </div>
+
+      <div class="scrollbox">
+        <table id="checkbook" class="table table-hover">
+          <thead>
+            <tr>
+              <th class="headers" scope="col">Date</th>
+              <th class="headers" scope="col">Description</th>
+              <th class="headers" scope="col">Category</th>
+              <th class="headers" scope="col">C</th>
+              <th class="headers" scope="col">Amount</th>
+              <th class="headers" scope="col">Balance</th>
+              <th class="headers" scope="col">&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody data-idx="1000" data-file="">
+
+          </tbody>
+        </table>      
+      </div>
+
+    </div>
+
+
+    <!-- You can also require other files to run in this process -->
+    <script src="./index.js"></script>
+  </body>
+</html>
