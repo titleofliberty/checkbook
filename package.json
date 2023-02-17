@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/titleofliberty/checkbook#readme",
   "devDependencies": {
-    "electron": "^23.0.0"
+    "electron": "^23.1.0"
   },
   "dependencies": {
     "bootstrap": "^5.2.3",
